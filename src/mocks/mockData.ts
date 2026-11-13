@@ -1,0 +1,213 @@
+import { CAPTURE_CATEGORIES, EXPENSE_CATEGORIES, TASK_PRIORITIES, TASK_STATUS } from '../constants/categories';
+import type { Capture, Task, Expense, AcademicMaterial, Event, Examination } from '../store/useStore';
+
+export const mockCaptures: Capture[] = [
+  {
+    id: '1',
+    imageUrl: '/placeholder-screenshot-1.png',
+    category: CAPTURE_CATEGORIES.PAYMENT,
+    title: 'Grocery Payment',
+    extractedText: 'Payment of ₹2,450 to BigBasket for groceries',
+    confidence: 0.95,
+    status: 'completed',
+    createdAt: new Date('2026-10-20'),
+    fields: {
+      amount: 2450,
+      merchant: 'BigBasket',
+      transactionId: 'TXN123456',
+      status: 'completed',
+    },
+  },
+  {
+    id: '2',
+    imageUrl: '/placeholder-screenshot-2.png',
+    category: CAPTURE_CATEGORIES.ASSIGNMENT,
+    title: 'DAA Assignment 3',
+    extractedText: 'Design and Analysis of Algorithms Assignment 3 due on 30th October',
+    confidence: 0.92,
+    status: 'completed',
+    createdAt: new Date('2026-10-18'),
+    fields: {
+      subject: 'Design and Analysis of Algorithms',
+      deadline: new Date('2026-10-30'),
+      description: 'Complete problems 1-5 from Chapter 7',
+    },
+  },
+  {
+    id: '3',
+    imageUrl: '/placeholder-screenshot-3.png',
+    category: CAPTURE_CATEGORIES.ACADEMIC,
+    title: 'Binary Search Trees',
+    extractedText: 'Lecture notes on Binary Search Trees from Data Structures',
+    confidence: 0.88,
+    status: 'completed',
+    createdAt: new Date('2026-10-15'),
+    fields: {
+      subject: 'Data Structures',
+      topic: 'Binary Search Trees',
+      subtopic: 'Tree Traversals',
+      keyConcepts: ['Inorder traversal', 'Preorder traversal', 'Postorder traversal'],
+    },
+  },
+];
+
+export const mockTasks: Task[] = [
+  {
+    id: '1',
+    title: 'Complete DAA Assignment 3',
+    subject: 'Design and Analysis of Algorithms',
+    description: 'Complete problems 1-5 from Chapter 7',
+    deadline: new Date('2026-10-30'),
+    priority: TASK_PRIORITIES.HIGH,
+    status: TASK_STATUS.PENDING,
+    captureId: '2',
+    createdAt: new Date('2026-10-18'),
+  },
+  {
+    id: '2',
+    title: 'Prepare for OS Midterm',
+    subject: 'Operating Systems',
+    description: 'Review Chapters 1-5 and practice problems',
+    deadline: new Date('2026-11-05'),
+    priority: TASK_PRIORITIES.URGENT,
+    status: TASK_STATUS.IN_PROGRESS,
+    createdAt: new Date('2026-10-10'),
+  },
+  {
+    id: '3',
+    title: 'Submit Project Proposal',
+    subject: 'Software Engineering',
+    description: 'Submit the group project proposal document',
+    deadline: new Date('2026-10-25'),
+    priority: TASK_PRIORITIES.MEDIUM,
+    status: TASK_STATUS.PENDING,
+    createdAt: new Date('2026-10-12'),
+  },
+  {
+    id: '4',
+    title: 'DBMS Lab Report',
+    subject: 'Database Management Systems',
+    description: 'Complete SQL queries lab report',
+    deadline: new Date('2026-10-22'),
+    priority: TASK_PRIORITIES.LOW,
+    status: TASK_STATUS.COMPLETED,
+    createdAt: new Date('2026-10-05'),
+  },
+];
+
+export const mockExpenses: Expense[] = [
+  {
+    id: '1',
+    amount: 2450,
+    merchant: 'BigBasket',
+    category: EXPENSE_CATEGORIES.FOOD,
+    date: new Date('2026-10-20'),
+    transactionId: 'TXN123456',
+    status: 'completed',
+    captureId: '1',
+    createdAt: new Date('2026-10-20'),
+  },
+  {
+    id: '2',
+    amount: 350,
+    merchant: 'Uber',
+    category: EXPENSE_CATEGORIES.TRAVEL,
+    date: new Date('2026-10-19'),
+    status: 'completed',
+    createdAt: new Date('2026-10-19'),
+  },
+  {
+    id: '3',
+    amount: 890,
+    merchant: 'Amazon',
+    category: EXPENSE_CATEGORIES.SHOPPING,
+    date: new Date('2026-10-18'),
+    status: 'completed',
+    createdAt: new Date('2026-10-18'),
+  },
+  {
+    id: '4',
+    amount: 1200,
+    merchant: 'College Canteen',
+    category: EXPENSE_CATEGORIES.FOOD,
+    date: new Date('2026-10-17'),
+    status: 'completed',
+    createdAt: new Date('2026-10-17'),
+  },
+  {
+    id: '5',
+    amount: 5000,
+    merchant: 'Bookstore',
+    category: EXPENSE_CATEGORIES.EDUCATION,
+    date: new Date('2026-10-15'),
+    status: 'completed',
+    createdAt: new Date('2026-10-15'),
+  },
+];
+
+export const mockAcademicMaterials: AcademicMaterial[] = [
+  {
+    id: '1',
+    subject: 'Data Structures',
+    topic: 'Binary Search Trees',
+    subtopic: 'Tree Traversals',
+    notes: 'Binary Search Trees are a type of binary tree where for each node, all elements in the left subtree are less than the node, and all elements in the right subtree are greater than the node.',
+    keyConcepts: ['Inorder traversal', 'Preorder traversal', 'Postorder traversal', 'Time complexity O(log n)'],
+    formulas: ['Height = log₂(n)', 'Search time = O(log n)'],
+    explanation: 'BSTs provide efficient search, insertion, and deletion operations with average time complexity of O(log n). They are widely used in database indexing and implementing associative arrays.',
+    captureId: '3',
+    createdAt: new Date('2026-10-15'),
+  },
+  {
+    id: '2',
+    subject: 'Operating Systems',
+    topic: 'Process Scheduling',
+    subtopic: 'Round Robin',
+    notes: 'Round Robin is a CPU scheduling algorithm where each process is assigned a fixed time slice (time quantum) in a cyclic way.',
+    keyConcepts: ['Time quantum', 'Context switching', 'Starvation prevention'],
+    createdAt: new Date('2026-10-12'),
+  },
+];
+
+export const mockEvents: Event[] = [
+  {
+    id: '1',
+    name: 'Tech Symposium 2026',
+    date: new Date('2026-11-15'),
+    time: '10:00 AM',
+    venue: 'Main Auditorium',
+    reminderSet: true,
+    createdAt: new Date('2026-10-10'),
+  },
+  {
+    id: '2',
+    name: 'Workshop on Machine Learning',
+    date: new Date('2026-11-20'),
+    time: '2:00 PM',
+    venue: 'Lab 3',
+    reminderSet: false,
+    createdAt: new Date('2026-10-08'),
+  },
+];
+
+export const mockExaminations: Examination[] = [
+  {
+    id: '1',
+    subject: 'Operating Systems',
+    date: new Date('2026-11-10'),
+    time: '9:00 AM',
+    venue: 'Room 201',
+    academicMaterialId: '2',
+    reminderSet: true,
+    createdAt: new Date('2026-10-05'),
+  },
+  {
+    id: '2',
+    subject: 'Database Management Systems',
+    date: new Date('2026-11-15'),
+    time: '2:00 PM',
+    venue: 'Room 305',
+    reminderSet: true,
+    createdAt: new Date('2026-10-05'),
+  },
+];
